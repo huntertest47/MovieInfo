@@ -46,13 +46,13 @@ class MovieFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                reloadData(view)
+                loadData(view)
             }
         }
         return view
     }
 
-    private fun reloadData(recyclerView: RecyclerView) {
+    private fun loadData(recyclerView: RecyclerView) {
         val movie_URL = "https://api.hkmovie6.com/hkm/movies?type=showing"
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -62,7 +62,7 @@ class MovieFragment : Fragment() {
                     recyclerView.adapter = MovieRecyclerViewAdapter(movie)
                 }
             } catch (e : Exception) {
-                Log.d("NewsListFragment", "reloadData: $e")
+                Log.d("movieFragment", "reloadData: $e")
             }
         }
     }

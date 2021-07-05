@@ -69,7 +69,7 @@ class MovieRecyclerViewAdapter(
             view.setOnClickListener {
                 it.findNavController().navigate(
                     R.id.action_movieFragment_to_moviedetailFragment,
-                    bundleOf(Pair("property_ID", movieID))
+                    bundleOf(Pair("movie_ID", movieID.toString()))
                 )
             }
         }

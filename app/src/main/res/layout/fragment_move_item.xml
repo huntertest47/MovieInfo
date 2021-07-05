@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
+    android:paddingStart="5dp"
     android:paddingEnd="5dp"
     android:paddingBottom="10dp">
 
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Rating" />
+        android:text="@string/rating" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="261dp"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="MovieName"
+            android:text="@string/moviename"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +49,7 @@
             android:layout_height="18dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
-            android:text="FavCount"
+            android:text="@string/favcount"
             app:layout_constraintStart_toEndOf="@+id/favCountImageView"
             app:layout_constraintTop_toBottomOf="@+id/movieNameTextView" />
 
@@ -59,7 +60,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
-            android:text="CommentCount"
+            android:text="@string/commentcount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/commentCountImageView"
@@ -72,7 +73,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="24dp"
-            android:text="OpenDate"
+            android:text="@string/opendate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -88,7 +89,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieNameTextView"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+            android:contentDescription="@string/favcount" />
 
         <ImageView
             android:id="@+id/commentCountImageView"
@@ -98,7 +100,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toEndOf="@+id/favCountTextView"
             app:layout_constraintTop_toBottomOf="@+id/movieNameTextView"
-            app:srcCompat="@drawable/ic_outline_mode_comment_24" />
+            app:srcCompat="@drawable/ic_outline_mode_comment_24"
+            android:contentDescription="@string/commentcount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
