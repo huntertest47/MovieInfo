@@ -3,11 +3,14 @@ package movie6.codingtest.movieinfo.ui.moviedetail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.glide.slider.library.SliderLayout
+import com.glide.slider.library.slidertypes.DefaultSliderView
+import com.glide.slider.library.slidertypes.TextSliderView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
@@ -31,6 +34,11 @@ class MovieDetailFragment : Fragment() {
     lateinit var genreView: TextView
     lateinit var languageView: TextView
 
+    lateinit var sliderShow: SliderLayout
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +55,10 @@ class MovieDetailFragment : Fragment() {
         return view
     }
 
+    override fun onStop() {
+        sliderShow.stopAutoCycle()
+        super.onStop()
+    }
 
     private fun setupPalette(view: View) {
         ratingView = view.findViewById(R.id.ratingDTextView)
@@ -59,6 +71,8 @@ class MovieDetailFragment : Fragment() {
         castView = view.findViewById(R.id.castTextView)
         genreView = view.findViewById(R.id.genreTextView)
         languageView = view.findViewById(R.id.languageTextView)
+        sliderShow = view.findViewById(R.id.slider)
+
     }
 
 
@@ -79,15 +93,22 @@ class MovieDetailFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setUIText(movie: Movie){
-        ratingView.text = movie.rating.toString()
+
+        if (movie.rateCount <= 0) {
+            ratingView.text = "NR"
+        } else {
+            ratingView.text = movie.rating.toString()
+        }
+
         movieNameView.text = movie.name
+
         favCountView.text = movie.favCount.toString()
+
         commentCountView.text = movie.commentCount.toString()
 
         val jsonDate =
             SimpleDateFormat("EEE dd MMM yyyy HH:mm:ss", Locale.getDefault()).parse(movie.openDate)
         val stringDate = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(jsonDate!!)
-
         dateDurCatView.text = "$stringDate || ${movie.duration} mins || ${movie.infoDict.Category}"
 
         synopsis.text = movie.synopsis
@@ -100,5 +121,24 @@ class MovieDetailFragment : Fragment() {
 
         languageView.text = movie.infoDict.Language
 
+        if (movie.screenShots.size <= 0){
+            val sliderView = DefaultSliderView(requireContext())
+            sliderView
+                .image(R.drawable.ic_baseline_movie_24)
+                .setProgressBarVisible(true)
+
+            sliderShow.addSlider(sliderView)
+
+        } else {
+            movie.screenShots.forEach { screenShotUrl ->
+                val sliderView = DefaultSliderView(requireContext())
+
+                sliderView
+                    .image(screenShotUrl)
+                    .setProgressBarVisible(true)
+
+                sliderShow.addSlider(sliderView)
+            }
+        }
     }
 }

@@ -53,20 +53,20 @@ class MovieFragment : Fragment() {
     }
 
     private fun loadData(recyclerView: RecyclerView) {
-        val movie_URL = "https://api.hkmovie6.com/hkm/movies?type=showing"
+        val movieUrl = "https://api.hkmovie6.com/hkm/movies?type=showing"
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val json = Network.getTextFromNetwork(movie_URL)
-                val movie = Gson().fromJson<List<Movie>>(json,object : TypeToken<List<Movie>>() {}.type)
+                val json = Network.getTextFromNetwork(movieUrl)
+                val movie =
+                    Gson().fromJson<List<Movie>>(json, object : TypeToken<List<Movie>>() {}.type)
                 CoroutineScope(Dispatchers.Main).launch {
                     recyclerView.adapter = MovieRecyclerViewAdapter(movie)
                 }
-            } catch (e : Exception) {
+            } catch (e: Exception) {
                 Log.d("movieFragment", "reloadData: $e")
             }
         }
     }
-
 
 
     companion object {

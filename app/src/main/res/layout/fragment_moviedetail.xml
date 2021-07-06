@@ -24,27 +24,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.daimajia.slider.library.SliderLayout
+            <com.glide.slider.library.SliderLayout
                 android:id="@+id/slider"
-                android:layout_width="396dp"
-                android:layout_height="169dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" >
 
-            <com.daimajia.slider.library.Indicators.PagerIndicator
-                android:id="@+id/custom_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/slider">
+                <com.glide.slider.library.indicators.PagerIndicator
+                    android:id="@+id/custom_indicator"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center" />
+            </com.glide.slider.library.SliderLayout>
 
-            </com.daimajia.slider.library.Indicators.PagerIndicator>
 
             <TextView
                 android:id="@+id/ratingDTextView"
@@ -222,6 +217,7 @@
                 app:layout_constraintStart_toEndOf="@+id/language"
                 app:layout_constraintTop_toBottomOf="@+id/genreTextView"
                 app:layout_constraintVertical_bias="0.005" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

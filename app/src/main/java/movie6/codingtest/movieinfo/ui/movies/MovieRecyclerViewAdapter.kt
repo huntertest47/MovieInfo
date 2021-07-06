@@ -1,6 +1,8 @@
 package movie6.codingtest.movieinfo.ui.movies
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import movie6.codingtest.movieinfo.data.Movie
 import movie6.codingtest.movieinfo.R
@@ -63,7 +67,8 @@ class MovieRecyclerViewAdapter(
         val commentCountView: TextView = view.findViewById(R.id.commentCountTextView)
         val openDateView: TextView = view.findViewById(R.id.openDateTextView)
 
-        var movieID : Int = 0
+        var movieID: Int = 0
+
 
         init {
             view.setOnClickListener {
