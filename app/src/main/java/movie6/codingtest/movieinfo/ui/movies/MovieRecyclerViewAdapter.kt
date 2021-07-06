@@ -47,10 +47,11 @@ class MovieRecyclerViewAdapter(
         }
 
 
-        if (item.rateCount <= 0) {
-            holder.ratingView.text = "NR"
+        holder.ratingView.text = if (item.rating != null) {
+            val rating = item.rating.toString().dropLast(1)
+            StringBuffer(rating.trim()).insert(rating.length - 1, ".")
         } else {
-            holder.ratingView.text = item.rating.toString()
+            "NR"
         }
 
         holder.movieNameView.text = item.name

@@ -9,9 +9,9 @@ data class Movie(
         val thumbnail: String?,
         val openDate: String,
         val duration: Int,
-        val synopsis: String,
+        val synopsis: String?,
         val chiSynopsis: String,
-        val rating: Int,
+        val rating: Int?,
         val interestingness: Int,
         val commentCount: Int,
         val intertingnessComing: Int,
@@ -43,12 +43,12 @@ data class Pagination(
 )
 
 data class InfoDict(
-        val Cast: String,
+        val Cast: String?,
         val Category: String,
-        val Language: String,
-        val Director: String,
+        val Language: String?,
+        val Director: String?,
         val Duration: String,
-        val Genre: String
+        val Genre: String?
 )
 
 data class chiInfoDict(

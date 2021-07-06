@@ -12,15 +12,15 @@
 
     <ImageView
         android:id="@+id/movieImageView"
-        android:layout_width="107dp"
-        android:layout_height="114dp"
+        android:layout_width="151dp"
+        android:layout_height="126dp"
         android:layout_weight="1"
         android:contentDescription="@string/movie_cover"
         app:srcCompat="@drawable/ic_baseline_movie_24" />
 
     <TextView
         android:id="@+id/ratingTextView"
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"

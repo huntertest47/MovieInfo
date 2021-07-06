@@ -36,10 +36,6 @@ class MovieDetailFragment : Fragment() {
 
     lateinit var sliderShow: SliderLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,7 +68,6 @@ class MovieDetailFragment : Fragment() {
         genreView = view.findViewById(R.id.genreTextView)
         languageView = view.findViewById(R.id.languageTextView)
         sliderShow = view.findViewById(R.id.slider)
-
     }
 
 
@@ -94,10 +89,11 @@ class MovieDetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setUIText(movie: Movie){
 
-        if (movie.rateCount <= 0) {
-            ratingView.text = "NR"
+        ratingView.text = if (movie.rating != null) {
+            val rating = movie.rating.toString().dropLast(1) // e.g. 395 -> 39
+            StringBuffer(rating.trim()).insert(rating.length - 1, ".") // e.g. 39 -> 3.9
         } else {
-            ratingView.text = movie.rating.toString()
+            "NR"
         }
 
         movieNameView.text = movie.name
@@ -111,15 +107,16 @@ class MovieDetailFragment : Fragment() {
         val stringDate = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(jsonDate!!)
         dateDurCatView.text = "$stringDate || ${movie.duration} mins || ${movie.infoDict.Category}"
 
-        synopsis.text = movie.synopsis
 
-        directorView.text = movie.infoDict.Director
+        synopsis.text = movie.synopsis ?: "NR"
 
-        castView.text = movie.infoDict.Cast
+        directorView.text = movie.infoDict.Director ?: "NR"
 
-        genreView.text = movie.infoDict.Genre
+        castView.text = movie.infoDict.Cast ?: "NR"
 
-        languageView.text = movie.infoDict.Language
+        genreView.text = movie.infoDict.Genre ?: "NR"
+
+        languageView.text = movie.infoDict.Language ?: "NR"
 
         if (movie.screenShots.size <= 0){
             val sliderView = DefaultSliderView(requireContext())
