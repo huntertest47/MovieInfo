@@ -15,4 +15,5 @@
     <string name="language">language</string>
     <string name="synopsis">Synopsis</string>
     <string name="director">director</string>
+    <string name="date_duration_category">Date || Duration || Category</string>
 </resources>

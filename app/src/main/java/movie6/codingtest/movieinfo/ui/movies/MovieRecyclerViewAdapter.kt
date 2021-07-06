@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -30,11 +31,21 @@ class MovieRecyclerViewAdapter(
         return ViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
 
-        Picasso.get().load(item.thumbnail).into(holder.movieView)
+        if (item.thumbnail != null) {
+            Picasso.get().load(item.thumbnail).into(holder.movieView)
+        } else {
+
+            holder.movieView.setImageDrawable(
+                holder.itemView.context.getDrawable(
+                    R.drawable.ic_baseline_movie_24
+                )
+            )
+        }
+
 
         if (item.rateCount <= 0) {
             holder.ratingView.text = "NR"

@@ -6,7 +6,7 @@ data class Movie(
         val name: String,
         val chiName: String,
         val dbTrailerUrl: String,
-        val thumbnail: String,
+        val thumbnail: String?,
         val openDate: String,
         val duration: Int,
         val synopsis: String,
